@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CAN Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    th, td {
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    #status {
+      margin-top: 0.5rem;
+      color: gray;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Latest CAN Messages</h1>
+  <div id="status">Loading...</div>
+  <div id="latest">
+    <table>
+      <thead>
+        <tr>
+          <th>Topic</th>
+          <th>Payload</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody id="latest-table-body">
+        <!-- Data will be injected here by script.js -->
+      </tbody>
+    </table>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -56,6 +56,34 @@ services:
       MQTT_HOST: mosquitto
     restart: unless-stopped
 
+  api:
+    build: ./mqtt_api
+    container_name: mqtt-sql-canlogger-api
+    depends_on:
+      db:
+        condition: service_started
+    environment:
+      DB_HOST: db
+      DB_NAME: candb
+      DB_USER: user
+      DB_PASS: password
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
+  web:
+    image: nginx:alpine
+    container_name: mqtt-sql-canlogger-web
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+    volumes:
+      - ./web/index.html:/usr/share/nginx/html/index.html:ro
+      - ./web/script.js:/usr/share/nginx/html/script.js:ro
+      - ./web/nginx.conf:/etc/nginx/nginx.conf:ro
+
 volumes:
   db_data:
   mosquitto_data:
